@@ -26,6 +26,8 @@ namespace JetBrains.ReSharper.PowerToys.ZenCoding
       new Dictionary<string, DocType>
       {
         { ".spark", DocType.Html },
+        { ".html", DocType.Html },
+        { ".htm", DocType.Html },
         { ".css", DocType.Css },
       };
 
