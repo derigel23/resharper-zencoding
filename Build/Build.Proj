@@ -18,12 +18,12 @@
 		<BuildDependsOn>
 			$(BuildDependsOn);
 			InvokeSolutionBuild;
-			InvokeSetupsBuild;
+			<!--InvokeSetupsBuild;-->
 		</BuildDependsOn>
 		<CleanDependsOn>
 			$(CleanDependsOn);
 			InvokeSolutionClean;
-			InvokeSetupsClean;
+			<!--InvokeSetupsClean;-->
 		</CleanDependsOn>
 	</PropertyGroup>
 

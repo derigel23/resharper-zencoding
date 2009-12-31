@@ -3,7 +3,7 @@ call "%VS90COMNTOOLS%vsvars32.bat"
 
 :Build
 cls
-msbuild Build\Build.proj
+msbuild Build\Build.proj /target:Rebuild
 
 rem Loop the build script.
 set CHOICE=nothing
