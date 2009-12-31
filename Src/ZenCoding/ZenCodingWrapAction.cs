@@ -81,7 +81,7 @@ namespace JetBrains.ReSharper.PowerToys.ZenCoding
 
               int insertPoint;
               var expanded = Engine.WrapWithAbbreviation(abbr, textControl.Selection.GetSelectionText(),
-                                                         ourFileTypes[GetProjectFile(context).LanguageType],
+                                                         GetDocTypeForFile(GetProjectFile(context)),
                                                          out insertPoint);
               CheckAndIndent(textControl, selection, expanded, insertPoint);
             }

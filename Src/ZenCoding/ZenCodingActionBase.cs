@@ -1,4 +1,7 @@
+using System;
 using System.Collections.Generic;
+using System.IO;
+
 using JetBrains.ActionManagement;
 using JetBrains.DocumentModel;
 using JetBrains.ProjectModel;
@@ -12,14 +15,21 @@ namespace JetBrains.ReSharper.PowerToys.ZenCoding
 {
   public abstract class ZenCodingActionBase : IActionHandler
   {
-    protected static readonly IDictionary<ProjectFileType, DocType> ourFileTypes =
+    static readonly IDictionary<ProjectFileType, DocType> ourFileTypes =
       new Dictionary<ProjectFileType, DocType>
       {
         { ProjectFileType.ASP, DocType.Html },
         { ProjectFileType.XML, DocType.Xsl },
       };
 
-    private static ZenCodingEngine ourEngine;
+    static readonly IDictionary<string, DocType> ourFileTypesBasedOnExtension =
+      new Dictionary<string, DocType>
+      {
+        { ".spark", DocType.Html },
+        { ".css", DocType.Css },
+      };
+
+    static ZenCodingEngine ourEngine;
 
     protected static ZenCodingEngine Engine
     {
@@ -34,7 +44,30 @@ namespace JetBrains.ReSharper.PowerToys.ZenCoding
         return nextUpdate();
       }
 
-      return ourFileTypes.ContainsKey(GetProjectFile(context).LanguageType) || nextUpdate();
+      return IsSupportedFile(GetProjectFile(context)) || nextUpdate();
+    }
+
+    protected bool IsSupportedFile(IProjectFile file)
+    {
+      var fileExtension = Path.GetExtension(file.Name);
+
+      return ourFileTypes.ContainsKey(file.LanguageType) ||
+             (fileExtension != null && ourFileTypesBasedOnExtension.ContainsKey(fileExtension));
+    }
+
+    protected DocType GetDocTypeForFile(IProjectFile file)
+    {
+      if (!IsSupportedFile(file))
+      {
+        throw new NotSupportedException(String.Format("The file {0} is not supported", file.Name));
+      }
+
+      if (ourFileTypes.ContainsKey(file.LanguageType))
+      {
+        return ourFileTypes[file.LanguageType];
+      }
+
+      return ourFileTypesBasedOnExtension[Path.GetExtension(file.Name)];
     }
 
     protected static IProjectFile GetProjectFile(IDataContext context)

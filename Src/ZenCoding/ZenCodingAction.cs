@@ -45,7 +45,7 @@ namespace JetBrains.ReSharper.PowerToys.ZenCoding
           }
 
           int insertPoint;
-          var expanded = Engine.ExpandAbbreviation(abbr, ourFileTypes[GetProjectFile(context).LanguageType], out insertPoint);
+          var expanded = Engine.ExpandAbbreviation(abbr, GetDocTypeForFile(GetProjectFile(context)), out insertPoint);
           CheckAndIndent(textControl, abbrRange, expanded, insertPoint);
         }
       }
