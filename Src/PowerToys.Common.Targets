@@ -2,7 +2,7 @@
 	<!-- Inputs. -->
 	<PropertyGroup>
 		<!-- This folder must point to the ReSharper binaries location on your system. -->
-		<ReSharperBinariesDir Condition="'$(ReSharperBinariesDir)'==''">$(PowerToysHomeDir)/../Bin</ReSharperBinariesDir>
+		<ReSharperBinariesDir Condition="'$(ReSharperBinariesDir)'==''">c:\Program Files (x86)\JetBrains\ReSharper\v5.0\Bin\</ReSharperBinariesDir>
 		<PowerToysBinariesDir Condition="'$(PowerToysBinariesDir)'==''">$(PowerToysHomeDir)/Bin</PowerToysBinariesDir>
 	</PropertyGroup>
 

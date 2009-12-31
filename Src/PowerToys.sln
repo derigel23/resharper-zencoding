@@ -1,20 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 10.00
 # Visual Studio 2008
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CsUnit", "CsUnit\CsUnit.csproj", "{751F04EE-3A62-4895-AE49-7993B70F80F8}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CyclomaticComplexity", "CyclomaticComplexity\CyclomaticComplexity.csproj", "{4FF42D42-187D-4332-8154-49506B1DB698}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExploreTypeInterface", "ExploreTypeInterface\ExploreTypeInterface.csproj", "{325A3490-63B3-4A38-838B-653C9F8C502F}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FindText", "FindText\FindText.csproj", "{1B67E377-04E5-45A6-A8D9-7A82313BD0AF}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LiveTemplatesMacro", "LiveTemplatesMacro\LiveTemplatesMacro.csproj", "{E59169DE-628F-4C64-BDAB-F0A2EA6752F0}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MenuItem", "MenuItem\MenuItem.csproj", "{878CAB75-6B0F-4FAD-82CE-645D0183C4FD}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OptionsPage", "OptionsPage\OptionsPage.csproj", "{16BAC5EC-3466-44F9-85B9-B12EB13EBA24}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{A901F470-9CCB-405A-A34F-A97EA78094B4}"
 	ProjectSection(SolutionItems) = preProject
 		..\Build\Build.Proj = ..\Build\Build.Proj
@@ -28,17 +14,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	ProjectSection(FolderStartupServices) = postProject
 		{B4F97281-0DBD-4835-9ED8-7DFB966E87FF} = {B4F97281-0DBD-4835-9ED8-7DFB966E87FF}
 	EndProjectSection
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MakeMethodGeneric", "MakeMethodGeneric\MakeMethodGeneric.csproj", "{61B2B58E-73C7-4769-893C-6F0B49B03076}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GenerateDispose", "GenerateDispose\GenerateDispose.csproj", "{70F9E19B-EDB5-4643-B0B7-C93D73523F53}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReflectorNavigation", "ReflectorNavigation\ReflectorNavigation.csproj", "{6C7C2DF5-334A-4C0C-8528-0BC692D48FE5}"
-	ProjectSection(ProjectDependencies) = postProject
-		{B13C60E1-7675-4307-8AD6-E11B009CDEAC} = {B13C60E1-7675-4307-8AD6-E11B009CDEAC}
-	EndProjectSection
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReflectorNavigation.ReflectorAddin", "ReflectorNavigation\ReflectorAddin\ReflectorNavigation.ReflectorAddin.csproj", "{B13C60E1-7675-4307-8AD6-E11B009CDEAC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZenCoding", "ZenCoding\ZenCoding.csproj", "{0B9EEC3B-131D-4AA9-98E6-1FD307A1E269}"
 EndProject
