@@ -33,6 +33,26 @@
   </PropertyGroup>
   <Import Project="$(PowerToysHomeDir)/Src/PowerToys.Common.Targets" />
   <ItemGroup>
+    <Reference Include="DevExpress.Data.v7.1, Version=7.1.3.0, Culture=neutral, PublicKeyToken=ac81f19954537d54, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>$(ReSharperBinariesDir)\DevExpress.Data.v7.1.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DevExpress.Utils.v7.1, Version=7.1.3.0, Culture=neutral, PublicKeyToken=ac81f19954537d54, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>$(ReSharperBinariesDir)\DevExpress.Utils.v7.1.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraEditors.v7.1, Version=7.1.3.0, Culture=neutral, PublicKeyToken=ac81f19954537d54, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>$(ReSharperBinariesDir)\DevExpress.XtraEditors.v7.1.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraTreeList.v7.1, Version=7.1.3.0, Culture=neutral, PublicKeyToken=ac81f19954537d54, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>$(ReSharperBinariesDir)\DevExpress.XtraTreeList.v7.1.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="IronPython, Version=2.6.10920.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <DontRemapToReSharper>True</DontRemapToReSharper>
       <SpecificVersion>False</SpecificVersion>
@@ -93,6 +113,11 @@
       <HintPath>$(ReSharperBinariesDir)\JetBrains.Platform.ReSharper.Util.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="JetBrains.ReSharper.Features.Common, Version=5.0.1565.10, Culture=neutral, PublicKeyToken=1010a0d8d6380325, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>$(ReSharperBinariesDir)\JetBrains.ReSharper.Features.Common.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="JetBrains.ReSharper.Psi">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>$(ReSharperBinariesDir)\JetBrains.ReSharper.Psi.dll</HintPath>
@@ -124,6 +149,35 @@
     <Reference Include="System.XML" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Options\FileAssociationPresenter.cs" />
+    <Compile Include="Options\FileAssociationsTreeView.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Options\FileAssociationViewController.cs" />
+    <Compile Include="Options\EditFileAssociationForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Options\EditFileAssociationForm.Designer.cs">
+      <DependentUpon>EditFileAssociationForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Options\Model\Handlers\FileExtensionPatternHandler.cs" />
+    <Compile Include="Options\Model\Handlers\IPatternHandler.cs" />
+    <Compile Include="Options\Model\Handlers\RegexPatternHandler.cs" />
+    <Compile Include="Options\Model\PatternType.cs" />
+    <Compile Include="Options\EditFileAssociationControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Options\EditFileAssociationControl.Designer.cs">
+      <DependentUpon>EditFileAssociationControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Options\ZenCodingOptionsPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Options\ZenCodingOptionsPage.Designer.cs">
+      <DependentUpon>ZenCodingOptionsPage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Options\Model\FileAssociation.cs" />
+    <Compile Include="Options\Model\Settings.cs" />
     <Compile Include="ZenCodingActionBase.cs" />
     <Compile Include="ZenCodingWrapAction.cs" />
     <Compile Include="ZenCodingAction.cs" />
@@ -148,6 +202,16 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="license.txt" />
+    <EmbeddedResource Include="Options\EditFileAssociationForm.resx">
+      <DependentUpon>EditFileAssociationForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Options\EditFileAssociationControl.resx">
+      <DependentUpon>EditFileAssociationControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Options\zencoding.png" />
+    <EmbeddedResource Include="Options\ZenCodingOptionsPage.resx">
+      <DependentUpon>ZenCodingOptionsPage.cs</DependentUpon>
+    </EmbeddedResource>
     <Content Include="sys\copy.py">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

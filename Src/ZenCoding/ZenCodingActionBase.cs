@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
-using System.IO;
 
 using JetBrains.ActionManagement;
 using JetBrains.DocumentModel;
 using JetBrains.ProjectModel;
+using JetBrains.ReSharper.PowerToys.ZenCoding.Options.Model;
 using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.Psi.Services.FormatSettings;
 using JetBrains.TextControl;
@@ -20,15 +20,6 @@ namespace JetBrains.ReSharper.PowerToys.ZenCoding
       {
         { ProjectFileType.ASP, DocType.Html },
         { ProjectFileType.XML, DocType.Xsl },
-      };
-
-    static readonly IDictionary<string, DocType> ourFileTypesBasedOnExtension =
-      new Dictionary<string, DocType>
-      {
-        { ".spark", DocType.Html },
-        { ".html", DocType.Html },
-        { ".htm", DocType.Html },
-        { ".css", DocType.Css },
       };
 
     static ZenCodingEngine ourEngine;
@@ -51,10 +42,8 @@ namespace JetBrains.ReSharper.PowerToys.ZenCoding
 
     protected bool IsSupportedFile(IProjectFile file)
     {
-      var fileExtension = Path.GetExtension(file.Name);
-
       return ourFileTypes.ContainsKey(file.LanguageType) ||
-             (fileExtension != null && ourFileTypesBasedOnExtension.ContainsKey(fileExtension));
+             Settings.Instance.IsSupportedFile(file.Name);
     }
 
     protected DocType GetDocTypeForFile(IProjectFile file)
@@ -68,8 +57,8 @@ namespace JetBrains.ReSharper.PowerToys.ZenCoding
       {
         return ourFileTypes[file.LanguageType];
       }
-
-      return ourFileTypesBasedOnExtension[Path.GetExtension(file.Name)];
+      
+      return Settings.Instance.GetDocType(file.Name);
     }
 
     protected static IProjectFile GetProjectFile(IDataContext context)
