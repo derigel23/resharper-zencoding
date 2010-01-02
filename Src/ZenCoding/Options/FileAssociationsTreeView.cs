@@ -1,3 +1,5 @@
+using System;
+
 using JetBrains.ReSharper.PowerToys.ZenCoding.Options.Model;
 using JetBrains.TreeModels;
 using JetBrains.UI.RichText;
@@ -7,8 +9,8 @@ namespace JetBrains.ReSharper.PowerToys.ZenCoding.Options
 {
   public class FileAssociationsTreeView : TreeModelPresentableView
   {
-    TreeModelViewColumn _patternTypeColumn;
     TreeModelViewColumn _associationColumn;
+    TreeModelViewColumn _patternTypeColumn;
 
     public FileAssociationsTreeView(TreeModel model, ITreeViewController controller) : base(model, controller)
     {
@@ -24,7 +26,7 @@ namespace JetBrains.ReSharper.PowerToys.ZenCoding.Options
       _patternTypeColumn.Name = "Pattern Type";
       _patternTypeColumn.Caption = "Pattern Type";
       _patternTypeColumn.Width = 50;
-      
+
       _associationColumn = AddColumn();
       _associationColumn.Name = "Document Type";
       _associationColumn.Caption = "Document Type";
@@ -51,7 +53,11 @@ namespace JetBrains.ReSharper.PowerToys.ZenCoding.Options
     void UpdateNodeCellsForResult(TreeModelViewNode viewNode, FileAssociation fileAssociation)
     {
       viewNode.SetValue(_patternTypeColumn, fileAssociation.PatternType);
-      viewNode.SetValue(_associationColumn, fileAssociation.DocType);
+      
+      string docType = String.Format("{0}{1}",
+                                     fileAssociation.DocType,
+                                     fileAssociation.Enabled ? String.Empty : " (disabled)");
+      viewNode.SetValue(_associationColumn, docType);
     }
   }
 }
