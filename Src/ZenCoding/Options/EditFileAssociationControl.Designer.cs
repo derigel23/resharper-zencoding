@@ -139,7 +139,7 @@ namespace JetBrains.ReSharper.PowerToys.ZenCoding.Options
       this._xsl.Size = new System.Drawing.Size(45, 17);
       this._xsl.TabIndex = 3;
       this._xsl.TabStop = true;
-      this._xsl.Text = "&XSL";
+      this._xsl.Text = "X&SL";
       this._xsl.UseVisualStyleBackColor = true;
       // 
       // _css
