@@ -29,7 +29,7 @@ namespace JetBrains.ReSharper.PowerToys.ZenCoding.Options
                                            new FileAssociationViewController())
               {
                 Presenter = new FileAssociationPresenter(),
-                //Dock = DockStyle.Fill
+                Dock = DockStyle.Fill
               };
       _view.DoubleClick += EditFileAssociation;
       _rules.Controls.Add(_view);
