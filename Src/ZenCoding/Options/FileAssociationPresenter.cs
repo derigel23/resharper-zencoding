@@ -1,6 +1,4 @@
-﻿using System;
-
-using JetBrains.CommonControls;
+﻿using JetBrains.CommonControls;
 using JetBrains.ReSharper.Features.Common.TreePsiBrowser;
 using JetBrains.ReSharper.PowerToys.ZenCoding.Options.Model;
 using JetBrains.TreeModels;
@@ -19,7 +17,7 @@ namespace JetBrains.ReSharper.PowerToys.ZenCoding.Options
       var association = value as FileAssociation;
       if (association != null)
       {
-        RichText richText = association.Pattern ?? String.Empty;
+        RichText richText = association.Pattern ?? "(empty)";
         item.RichText = richText;
       }
     }
