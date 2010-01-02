@@ -81,7 +81,7 @@ namespace JetBrains.ReSharper.PowerToys.ZenCoding.Options
                  form =>
                    {
                      Settings.Instance.FileAssociations.Add(form.FileAssociation);
-                     BindModel();
+                     BindModel(null);
                    });
     }
 
@@ -120,7 +120,7 @@ namespace JetBrains.ReSharper.PowerToys.ZenCoding.Options
 
       Settings.Instance.FileAssociations.Remove(selection);
 
-      BindModel();
+      BindModel(null);
     }
 
     void MoveUp(object sender, EventArgs e)
@@ -137,7 +137,7 @@ namespace JetBrains.ReSharper.PowerToys.ZenCoding.Options
         if (ReferenceEquals(selection, association) && i > 0)
         {
           Exchange(i, i - 1);
-          BindModel();
+          BindModel(selection);
           break;
         }
       }
@@ -157,7 +157,7 @@ namespace JetBrains.ReSharper.PowerToys.ZenCoding.Options
         if (ReferenceEquals(selection, association) && i + 1 < Settings.Instance.FileAssociations.Count)
         {
           Exchange(i, i + 1);
-          BindModel();
+          BindModel(selection);
           break;
         }
       }
@@ -195,7 +195,7 @@ namespace JetBrains.ReSharper.PowerToys.ZenCoding.Options
         Settings.Instance.FileAssociations.Add((FileAssociation) association.Clone());
       }
 
-      BindModel();
+      BindModel(null);
     }
 
     static TreeSimpleModel BuildModel(IEnumerable<FileAssociation> fileAssociations)
@@ -210,10 +210,20 @@ namespace JetBrains.ReSharper.PowerToys.ZenCoding.Options
       return model;
     }
 
-    void BindModel()
+    void BindModel(FileAssociation selection)
     {
       _view.Model = BuildModel(Settings.Instance.FileAssociations);
       _view.UpdateAllNodesPresentation();
+
+      for (int i = 0; i < Settings.Instance.FileAssociations.Count; i++)
+      {
+        var association = Settings.Instance.FileAssociations[i];
+        if (ReferenceEquals(selection, association))
+        {
+          _view.SetFocusedNode(_view.FindNodeByID(i));
+          break;
+        }
+      }
     }
   }
 }
