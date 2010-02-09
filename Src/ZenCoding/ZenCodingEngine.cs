@@ -32,6 +32,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using IronPython.Hosting;
 using IronPython.Runtime;
+using JetBrains.ProjectModel;
 using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.Psi.Services.FormatSettings;
 using Microsoft.Scripting;
@@ -56,7 +57,7 @@ namespace JetBrains.ReSharper.PowerToys.ZenCoding
 
     private const string InsertionPoint = "$IP$";
 
-    public ZenCodingEngine()
+    public ZenCodingEngine(ISolution solution)
     {
       ScriptEngine engine = Python.CreateEngine();
       ScriptScope scope = engine.CreateScope();
@@ -73,7 +74,7 @@ namespace JetBrains.ReSharper.PowerToys.ZenCoding
         .AppendLine("from zen_settings import zen_settings")
         .AppendFormat("zen_core.insertion_point = '{0}'", InsertionPoint)
           .AppendLine()
-        .AppendFormat("zen_settings['variables']['indentation'] = '{0}'", GlobalFormatSettingsHelper.GetService().GetSettingsForLanguage(PsiLanguageType.ANY).GetIndentStr())
+        .AppendFormat("zen_settings['variables']['indentation'] = '{0}'", GlobalFormatSettingsHelper.GetService(solution).GetSettingsForLanguage(PsiLanguageType.ANY).GetIndentStr())
           .AppendLine()
         .AppendFormat("zen_core.newline = '{0}'", Regex.Escape(Environment.NewLine))
           .AppendLine();

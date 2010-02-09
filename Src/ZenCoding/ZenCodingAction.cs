@@ -33,7 +33,7 @@ namespace JetBrains.ReSharper.PowerToys.ZenCoding
           {
             var coords = textControl.Caret.PositionValue.ToDocLineColumn();
             int start;
-            abbr = Engine.FindAbbreviationInLine(textControl.Document.GetLineText(coords.Line), (int)coords.Column, out start);
+            abbr = GetEngine(solution).FindAbbreviationInLine(textControl.Document.GetLineText(coords.Line), (int)coords.Column, out start);
             if (start == -1)
             {
               Win32Declarations.MessageBeep(MessageBeepType.Error);
@@ -45,8 +45,8 @@ namespace JetBrains.ReSharper.PowerToys.ZenCoding
           }
 
           int insertPoint;
-          var expanded = Engine.ExpandAbbreviation(abbr, GetDocTypeForFile(GetProjectFile(context)), out insertPoint);
-          CheckAndIndent(textControl, abbrRange, expanded, insertPoint);
+          var expanded = GetEngine(solution).ExpandAbbreviation(abbr, GetDocTypeForFile(GetProjectFile(context)), out insertPoint);
+          CheckAndIndent(solution, textControl, abbrRange, expanded, insertPoint);
         }
       }
     }

@@ -22,11 +22,11 @@ namespace JetBrains.ReSharper.PowerToys.ZenCoding
         { ProjectFileType.XML, DocType.Xsl },
       };
 
-    static ZenCodingEngine ourEngine;
+    private static readonly Key<ZenCodingEngine> ourKey = new Key<ZenCodingEngine>("ZenCodingEngine");
 
-    protected static ZenCodingEngine Engine
+    protected static ZenCodingEngine GetEngine(ISolution solution)
     {
-      get { return ourEngine ?? (ourEngine = new ZenCodingEngine()); }
+      return solution.GetOrCreateData(ourKey, () => new ZenCodingEngine(solution));
     }
 
     public virtual bool Update(IDataContext context, ActionPresentation presentation, DelegateUpdate nextUpdate)
@@ -69,7 +69,7 @@ namespace JetBrains.ReSharper.PowerToys.ZenCoding
 
     public abstract void Execute(IDataContext context, DelegateExecute nextExecute);
 
-    protected static void CheckAndIndent(ITextControl textControl, TextRange abbrRange, string expanded, int insertPoint)
+    protected static void CheckAndIndent(ISolution solution, ITextControl textControl, TextRange abbrRange, string expanded, int insertPoint)
     {
       if (expanded.IsEmpty())
       {
@@ -77,8 +77,8 @@ namespace JetBrains.ReSharper.PowerToys.ZenCoding
         return;
       }
 
-      var indentSize = GlobalFormatSettingsHelper.GetService().GetSettingsForLanguage(PsiLanguageType.ANY).IndentSize;
-      expanded = Engine.PadString(expanded, (int)textControl.Document.GetCoordsByOffset(abbrRange.StartOffset).Column / indentSize);
+      var indentSize = GlobalFormatSettingsHelper.GetService(solution).GetSettingsForLanguage(PsiLanguageType.ANY).IndentSize;
+      expanded = GetEngine(solution).PadString(expanded, (int)textControl.Document.GetCoordsByOffset(abbrRange.StartOffset).Column / indentSize);
       textControl.Document.ReplaceText(abbrRange, expanded);
       if (insertPoint != -1)
       {

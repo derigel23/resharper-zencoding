@@ -80,10 +80,10 @@ namespace JetBrains.ReSharper.PowerToys.ZenCoding
               Assertion.Assert(selection.IsValid, "selection is not valid");
 
               int insertPoint;
-              var expanded = Engine.WrapWithAbbreviation(abbr, textControl.Selection.GetSelectionText(),
+              var expanded = GetEngine(solution).WrapWithAbbreviation(abbr, textControl.Selection.GetSelectionText(),
                                                          GetDocTypeForFile(GetProjectFile(context)),
                                                          out insertPoint);
-              CheckAndIndent(textControl, selection, expanded, insertPoint);
+              CheckAndIndent(solution, textControl, selection, expanded, insertPoint);
             }
           }
         }
