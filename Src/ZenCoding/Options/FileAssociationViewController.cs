@@ -15,28 +15,10 @@ namespace JetBrains.ReSharper.PowerToys.ZenCoding.Options
       return true;
     }
 
-    public override bool DragDropSupported
-    {
-      get
-      {
-        return false;
-      }
-    }
+    public override bool DragDropSupported { get { return false; } }
 
-    public override bool GuardActions
-    {
-      get
-      {
-        return false;
-      }
-    }
+    public override bool GuardActions { get { return true; } }
 
-    public override bool QuickSearchSupported
-    {
-      get
-      {
-        return false;
-      }
-    }
+    public override bool QuickSearchSupported { get { return false; } }
   }
 }

@@ -17,7 +17,6 @@
       <Directory Id="D.Plugin.ZenCoding.Sys" Name="sys" FileSource="$(var.DynPowerToysBinariesDir)\sys">
         <Component Id="C.Plugin.ZenCoding.Sys" Guid="{D6EEEAEA-7CED-449A-898C-41B8140B9E41}" Location="local" DiskId="$(var.BinariesDiskId)" KeyPath="yes">
           <File Id="F.Plugin.ZenCoding.Sys.Copy.Py" Name="copy.py" Checksum="yes" Vital="yes" KeyPath="no" ReadOnly="yes" />
-          <File Id="F.Plugin.ZenCoding.Sys.Copy_Reg.Py" Name="copy_reg.py" Checksum="yes" Vital="yes" KeyPath="no" ReadOnly="yes" />
           <File Id="F.Plugin.ZenCoding.Sys.Types.Py" Name="types.py" Checksum="yes" Vital="yes" KeyPath="no" ReadOnly="yes" />
         </Component>
       </Directory>
