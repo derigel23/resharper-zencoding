@@ -108,7 +108,7 @@ namespace JetBrains.ReSharper.PowerToys.ZenCoding
     public string FindAbbreviationInLine(string line, int index, out int startIndex)
     {
       PythonTuple tuple = findAbbrInLine(line, index);
-      string abbreviation = (string)tuple[0];
+      var abbreviation = (string)tuple[0];
       startIndex = string.IsNullOrEmpty(abbreviation) ? -1 : (int) tuple[1];
       return string.IsNullOrEmpty(abbreviation) ? null : abbreviation;
     }

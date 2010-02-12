@@ -7,7 +7,7 @@ namespace JetBrains.ReSharper.PowerToys.ZenCoding.Options
 {
   public partial class EditFileAssociationControl : SafeUserControl
   {
-    bool _updateCookie;
+    bool myUpdateCookie;
 
     public EditFileAssociationControl()
     {
@@ -21,29 +21,25 @@ namespace JetBrains.ReSharper.PowerToys.ZenCoding.Options
       SetUpValueChangedHandlers();
     }
 
-    public FileAssociation FileAssociation
-    {
-      get;
-      private set;
-    }
+    public FileAssociation FileAssociation { get; private set; }
 
     void SetUpValues(FileAssociation fileAssociation)
     {
       FileAssociation = fileAssociation;
 
-      _pattern.Text = FileAssociation.Pattern;
-      _enabled.Checked = FileAssociation.Enabled;
+      myPattern.Text = FileAssociation.Pattern;
+      myEnabled.Checked = FileAssociation.Enabled;
 
       switch (FileAssociation.DocType)
       {
         case DocType.Html:
-          _html.Checked = true;
+          myHtml.Checked = true;
           break;
         case DocType.Css:
-          _css.Checked = true;
+          myCss.Checked = true;
           break;
         case DocType.Xsl:
-          _xsl.Checked = true;
+          myXsl.Checked = true;
           break;
         default:
           throw new ArgumentOutOfRangeException();
@@ -52,10 +48,10 @@ namespace JetBrains.ReSharper.PowerToys.ZenCoding.Options
       switch (FileAssociation.PatternType)
       {
         case PatternType.FileExtension:
-          _fileExtension.Checked = true;
+          myFileExtension.Checked = true;
           break;
         case PatternType.Regex:
-          _regex.Checked = true;
+          myRegex.Checked = true;
           break;
         default:
           throw new ArgumentOutOfRangeException();
@@ -64,54 +60,54 @@ namespace JetBrains.ReSharper.PowerToys.ZenCoding.Options
 
     void SetUpValueChangedHandlers()
     {
-      _pattern.TextChanged += ParamsChanged;
+      myPattern.TextChanged += ParamsChanged;
 
-      _fileExtension.CheckedChanged += ParamsChanged;
-      _regex.CheckedChanged += ParamsChanged;
+      myFileExtension.CheckedChanged += ParamsChanged;
+      myRegex.CheckedChanged += ParamsChanged;
 
-      _html.CheckedChanged += ParamsChanged;
-      _css.CheckedChanged += ParamsChanged;
-      _xsl.CheckedChanged += ParamsChanged;
+      myHtml.CheckedChanged += ParamsChanged;
+      myCss.CheckedChanged += ParamsChanged;
+      myXsl.CheckedChanged += ParamsChanged;
 
-      _enabled.CheckedChanged += ParamsChanged;
+      myEnabled.CheckedChanged += ParamsChanged;
     }
 
     void ParamsChanged(object sender, EventArgs e)
     {
-      if (!_updateCookie)
+      if (!myUpdateCookie)
       {
-        _updateCookie = true;
+        myUpdateCookie = true;
 
-        FileAssociation.Pattern = _pattern.Text;
+        FileAssociation.Pattern = myPattern.Text;
 
-        if (_fileExtension.Checked)
+        if (myFileExtension.Checked)
         {
           FileAssociation.PatternType = PatternType.FileExtension;
         }
 
-        if (_regex.Checked)
+        if (myRegex.Checked)
         {
           FileAssociation.PatternType = PatternType.Regex;
         }
 
-        if (_html.Checked)
+        if (myHtml.Checked)
         {
           FileAssociation.DocType = DocType.Html;
         }
 
-        if (_css.Checked)
+        if (myCss.Checked)
         {
           FileAssociation.DocType = DocType.Css;
         }
 
-        if (_xsl.Checked)
+        if (myXsl.Checked)
         {
           FileAssociation.DocType = DocType.Xsl;
         }
 
-        FileAssociation.Enabled = _enabled.Checked;
+        FileAssociation.Enabled = myEnabled.Checked;
 
-        _updateCookie = false;
+        myUpdateCookie = false;
       }
     }
   }

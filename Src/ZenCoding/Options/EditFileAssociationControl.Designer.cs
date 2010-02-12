@@ -5,10 +5,10 @@ namespace JetBrains.ReSharper.PowerToys.ZenCoding.Options
 {
   partial class EditFileAssociationControl
   {
-    CheckBox _enabled;
-    TextBox _pattern;
+    CheckBox myEnabled;
+    TextBox myPattern;
     
-    RadioButton _fileExtension;
+    RadioButton myFileExtension;
     /// <summary> 
     /// Required designer variable.
     /// </summary>
@@ -38,14 +38,14 @@ namespace JetBrains.ReSharper.PowerToys.ZenCoding.Options
       System.Windows.Forms.Label _patternLabel;
       System.Windows.Forms.Label _patternTypeLabel;
       System.Windows.Forms.Label _associationLabel;
-      this._fileExtension = new System.Windows.Forms.RadioButton();
-      this._pattern = new System.Windows.Forms.TextBox();
-      this._enabled = new System.Windows.Forms.CheckBox();
-      this._regex = new System.Windows.Forms.RadioButton();
+      this.myFileExtension = new System.Windows.Forms.RadioButton();
+      this.myPattern = new System.Windows.Forms.TextBox();
+      this.myEnabled = new System.Windows.Forms.CheckBox();
+      this.myRegex = new System.Windows.Forms.RadioButton();
       this.panel1 = new System.Windows.Forms.Panel();
-      this._xsl = new System.Windows.Forms.RadioButton();
-      this._css = new System.Windows.Forms.RadioButton();
-      this._html = new System.Windows.Forms.RadioButton();
+      this.myXsl = new System.Windows.Forms.RadioButton();
+      this.myCss = new System.Windows.Forms.RadioButton();
+      this.myHtml = new System.Windows.Forms.RadioButton();
       this.panel2 = new System.Windows.Forms.Panel();
       _patternLabel = new System.Windows.Forms.Label();
       _patternTypeLabel = new System.Windows.Forms.Label();
@@ -83,48 +83,48 @@ namespace JetBrains.ReSharper.PowerToys.ZenCoding.Options
       // 
       // _fileExtension
       // 
-      this._fileExtension.AutoSize = true;
-      this._fileExtension.Location = new System.Drawing.Point(94, 3);
-      this._fileExtension.Name = "_fileExtension";
-      this._fileExtension.Size = new System.Drawing.Size(121, 17);
-      this._fileExtension.TabIndex = 1;
-      this._fileExtension.TabStop = true;
-      this._fileExtension.Text = "File E&xtension (.html)";
-      this._fileExtension.UseVisualStyleBackColor = true;
+      this.myFileExtension.AutoSize = true;
+      this.myFileExtension.Location = new System.Drawing.Point(94, 3);
+      this.myFileExtension.Name = "_fileExtension";
+      this.myFileExtension.Size = new System.Drawing.Size(121, 17);
+      this.myFileExtension.TabIndex = 1;
+      this.myFileExtension.TabStop = true;
+      this.myFileExtension.Text = "File E&xtension (.html)";
+      this.myFileExtension.UseVisualStyleBackColor = true;
       // 
       // _pattern
       // 
-      this._pattern.Location = new System.Drawing.Point(96, 3);
-      this._pattern.Name = "_pattern";
-      this._pattern.Size = new System.Drawing.Size(538, 20);
-      this._pattern.TabIndex = 1;
+      this.myPattern.Location = new System.Drawing.Point(96, 3);
+      this.myPattern.Name = "_pattern";
+      this.myPattern.Size = new System.Drawing.Size(538, 20);
+      this.myPattern.TabIndex = 1;
       // 
       // _enabled
       // 
-      this._enabled.AutoSize = true;
-      this._enabled.Location = new System.Drawing.Point(3, 172);
-      this._enabled.Name = "_enabled";
-      this._enabled.Size = new System.Drawing.Size(95, 17);
-      this._enabled.TabIndex = 4;
-      this._enabled.Text = "&Enable pattern";
-      this._enabled.UseVisualStyleBackColor = true;
+      this.myEnabled.AutoSize = true;
+      this.myEnabled.Location = new System.Drawing.Point(3, 172);
+      this.myEnabled.Name = "_enabled";
+      this.myEnabled.Size = new System.Drawing.Size(95, 17);
+      this.myEnabled.TabIndex = 4;
+      this.myEnabled.Text = "&Enable pattern";
+      this.myEnabled.UseVisualStyleBackColor = true;
       // 
       // _regex
       // 
-      this._regex.AutoSize = true;
-      this._regex.Location = new System.Drawing.Point(94, 26);
-      this._regex.Name = "_regex";
-      this._regex.Size = new System.Drawing.Size(159, 17);
-      this._regex.TabIndex = 2;
-      this._regex.TabStop = true;
-      this._regex.Text = "&Regular Expression (.*\\.html)";
-      this._regex.UseVisualStyleBackColor = true;
+      this.myRegex.AutoSize = true;
+      this.myRegex.Location = new System.Drawing.Point(94, 26);
+      this.myRegex.Name = "_regex";
+      this.myRegex.Size = new System.Drawing.Size(159, 17);
+      this.myRegex.TabIndex = 2;
+      this.myRegex.TabStop = true;
+      this.myRegex.Text = "&Regular Expression (.*\\.html)";
+      this.myRegex.UseVisualStyleBackColor = true;
       // 
       // panel1
       // 
-      this.panel1.Controls.Add(this._xsl);
-      this.panel1.Controls.Add(this._css);
-      this.panel1.Controls.Add(this._html);
+      this.panel1.Controls.Add(this.myXsl);
+      this.panel1.Controls.Add(this.myCss);
+      this.panel1.Controls.Add(this.myHtml);
       this.panel1.Controls.Add(_associationLabel);
       this.panel1.Location = new System.Drawing.Point(0, 83);
       this.panel1.Name = "panel1";
@@ -133,42 +133,42 @@ namespace JetBrains.ReSharper.PowerToys.ZenCoding.Options
       // 
       // _xsl
       // 
-      this._xsl.AutoSize = true;
-      this._xsl.Location = new System.Drawing.Point(94, 50);
-      this._xsl.Name = "_xsl";
-      this._xsl.Size = new System.Drawing.Size(45, 17);
-      this._xsl.TabIndex = 3;
-      this._xsl.TabStop = true;
-      this._xsl.Text = "X&SL";
-      this._xsl.UseVisualStyleBackColor = true;
+      this.myXsl.AutoSize = true;
+      this.myXsl.Location = new System.Drawing.Point(94, 50);
+      this.myXsl.Name = "_xsl";
+      this.myXsl.Size = new System.Drawing.Size(45, 17);
+      this.myXsl.TabIndex = 3;
+      this.myXsl.TabStop = true;
+      this.myXsl.Text = "X&SL";
+      this.myXsl.UseVisualStyleBackColor = true;
       // 
       // _css
       // 
-      this._css.AutoSize = true;
-      this._css.Location = new System.Drawing.Point(94, 27);
-      this._css.Name = "_css";
-      this._css.Size = new System.Drawing.Size(46, 17);
-      this._css.TabIndex = 2;
-      this._css.TabStop = true;
-      this._css.Text = "&CSS";
-      this._css.UseVisualStyleBackColor = true;
+      this.myCss.AutoSize = true;
+      this.myCss.Location = new System.Drawing.Point(94, 27);
+      this.myCss.Name = "_css";
+      this.myCss.Size = new System.Drawing.Size(46, 17);
+      this.myCss.TabIndex = 2;
+      this.myCss.TabStop = true;
+      this.myCss.Text = "&CSS";
+      this.myCss.UseVisualStyleBackColor = true;
       // 
       // _html
       // 
-      this._html.AutoSize = true;
-      this._html.Location = new System.Drawing.Point(94, 4);
-      this._html.Name = "_html";
-      this._html.Size = new System.Drawing.Size(55, 17);
-      this._html.TabIndex = 1;
-      this._html.TabStop = true;
-      this._html.Text = "&HTML";
-      this._html.UseVisualStyleBackColor = true;
+      this.myHtml.AutoSize = true;
+      this.myHtml.Location = new System.Drawing.Point(94, 4);
+      this.myHtml.Name = "_html";
+      this.myHtml.Size = new System.Drawing.Size(55, 17);
+      this.myHtml.TabIndex = 1;
+      this.myHtml.TabStop = true;
+      this.myHtml.Text = "&HTML";
+      this.myHtml.UseVisualStyleBackColor = true;
       // 
       // panel2
       // 
       this.panel2.Controls.Add(_patternTypeLabel);
-      this.panel2.Controls.Add(this._fileExtension);
-      this.panel2.Controls.Add(this._regex);
+      this.panel2.Controls.Add(this.myFileExtension);
+      this.panel2.Controls.Add(this.myRegex);
       this.panel2.Location = new System.Drawing.Point(0, 29);
       this.panel2.Name = "panel2";
       this.panel2.Size = new System.Drawing.Size(263, 48);
@@ -180,8 +180,8 @@ namespace JetBrains.ReSharper.PowerToys.ZenCoding.Options
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.Controls.Add(this.panel2);
       this.Controls.Add(this.panel1);
-      this.Controls.Add(this._enabled);
-      this.Controls.Add(this._pattern);
+      this.Controls.Add(this.myEnabled);
+      this.Controls.Add(this.myPattern);
       this.Controls.Add(_patternLabel);
       this.Name = "EditFileAssociationControl";
       this.Size = new System.Drawing.Size(269, 199);
@@ -196,11 +196,11 @@ namespace JetBrains.ReSharper.PowerToys.ZenCoding.Options
 
     #endregion
 
-    private RadioButton _regex;
+    private RadioButton myRegex;
     private Panel panel1;
-    private RadioButton _xsl;
-    private RadioButton _css;
-    private RadioButton _html;
+    private RadioButton myXsl;
+    private RadioButton myCss;
+    private RadioButton myHtml;
     private Panel panel2;
   }
 }

@@ -9,8 +9,8 @@ namespace JetBrains.ReSharper.PowerToys.ZenCoding.Options
 {
   public class FileAssociationsTreeView : TreeModelPresentableView
   {
-    TreeModelViewColumn _associationColumn;
-    TreeModelViewColumn _patternTypeColumn;
+    TreeModelViewColumn myAssociationColumn;
+    TreeModelViewColumn myPatternTypeColumn;
 
     public FileAssociationsTreeView(TreeModel model, ITreeViewController controller) : base(model, controller)
     {
@@ -22,15 +22,15 @@ namespace JetBrains.ReSharper.PowerToys.ZenCoding.Options
       ModelColumn.Name = "Pattern";
       ModelColumn.Caption = "Pattern";
 
-      _patternTypeColumn = AddColumn();
-      _patternTypeColumn.Name = "Pattern Type";
-      _patternTypeColumn.Caption = "Pattern Type";
-      _patternTypeColumn.Width = 50;
+      myPatternTypeColumn = AddColumn();
+      myPatternTypeColumn.Name = "Pattern Type";
+      myPatternTypeColumn.Caption = "Pattern Type";
+      myPatternTypeColumn.Width = 50;
 
-      _associationColumn = AddColumn();
-      _associationColumn.Name = "Document Type";
-      _associationColumn.Caption = "Document Type";
-      _associationColumn.Width = 150;
+      myAssociationColumn = AddColumn();
+      myAssociationColumn.Name = "Document Type";
+      myAssociationColumn.Caption = "Document Type";
+      myAssociationColumn.Width = 150;
 
       OptionsView.ShowColumns = true;
       OptionsView.ShowHorzLines = true;
@@ -40,8 +40,8 @@ namespace JetBrains.ReSharper.PowerToys.ZenCoding.Options
     protected override void UpdateNodeCells(TreeModelViewNode viewNode, TreeModelNode modelNode, PresentationState state)
     {
       base.UpdateNodeCells(viewNode, modelNode, state);
-      viewNode.SetValue(_patternTypeColumn, RichText.Empty);
-      viewNode.SetValue(_associationColumn, RichText.Empty);
+      viewNode.SetValue(myPatternTypeColumn, RichText.Empty);
+      viewNode.SetValue(myAssociationColumn, RichText.Empty);
 
       var association = modelNode.DataValue as FileAssociation;
       if (association != null)
@@ -52,12 +52,10 @@ namespace JetBrains.ReSharper.PowerToys.ZenCoding.Options
 
     void UpdateNodeCellsForResult(TreeModelViewNode viewNode, FileAssociation fileAssociation)
     {
-      viewNode.SetValue(_patternTypeColumn, fileAssociation.PatternType);
+      viewNode.SetValue(myPatternTypeColumn, fileAssociation.PatternType);
       
-      string docType = String.Format("{0}{1}",
-                                     fileAssociation.DocType,
-                                     fileAssociation.Enabled ? String.Empty : " (disabled)");
-      viewNode.SetValue(_associationColumn, docType);
+      string docType = String.Format("{0}{1}", fileAssociation.DocType, fileAssociation.Enabled ? null : " (disabled)");
+      viewNode.SetValue(myAssociationColumn, docType);
     }
   }
 }

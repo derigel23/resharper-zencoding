@@ -12,9 +12,9 @@ namespace JetBrains.ReSharper.PowerToys.ZenCoding
     public override void Execute(IDataContext context, DelegateExecute nextExecute)
     {
       var solution = context.GetData(IDE.DataConstants.SOLUTION);
-      Assertion.Assert(solution != null, "solution != null");
+      Assertion.AssertNotNull(solution, "solution == null");
       var textControl = context.GetData(IDE.DataConstants.TEXT_CONTROL);
-      Assertion.Assert(textControl != null, "textControl != null");
+      Assertion.AssertNotNull(textControl, "textControl == null");
 
       using (CommandCookie.Create("ZenCoding"))
       {

@@ -4,7 +4,6 @@ using System.IO;
 using System.Linq;
 using System.Xml;
 using System.Xml.Serialization;
-
 using JetBrains.Application;
 using JetBrains.ComponentModel;
 using JetBrains.ReSharper.PowerToys.ZenCoding.Options.Model.Handlers;
@@ -16,46 +15,47 @@ namespace JetBrains.ReSharper.PowerToys.ZenCoding.Options.Model
   [ShellComponentImplementation]
   public class Settings : IXmlExternalizableShellComponent
   {
-    public static readonly Settings Default = new Settings
-                                              {
-                                                FileAssociations = new List<FileAssociation>
-                                                                   {
-                                                                     new FileAssociation
-                                                                     {
-                                                                       Pattern = @".*\.html?$",
-                                                                       PatternType = PatternType.Regex,
-                                                                       DocType = DocType.Html,
-                                                                       Enabled = true
-                                                                     },
-                                                                     new FileAssociation
-                                                                     {
-                                                                       Pattern = ".spark",
-                                                                       PatternType = PatternType.FileExtension,
-                                                                       DocType = DocType.Html,
-                                                                       Enabled = true
-                                                                     },
-                                                                     new FileAssociation
-                                                                     {
-                                                                       Pattern = ".css",
-                                                                       PatternType = PatternType.FileExtension,
-                                                                       DocType = DocType.Css,
-                                                                       Enabled = true
-                                                                     },
-                                                                     new FileAssociation
-                                                                     {
-                                                                       Pattern = @".*\.xslt?$",
-                                                                       PatternType = PatternType.Regex,
-                                                                       DocType = DocType.Xsl,
-                                                                       Enabled = true
-                                                                     }
-                                                                   }
-                                              };
+    public static readonly Settings Default =
+      new Settings
+      {
+        FileAssociations = new List<FileAssociation>
+                           {
+                             new FileAssociation
+                             {
+                               Pattern = @".*\.html?$",
+                               PatternType = PatternType.Regex,
+                               DocType = DocType.Html,
+                               Enabled = true
+                             },
+                             new FileAssociation
+                             {
+                               Pattern = ".spark",
+                               PatternType = PatternType.FileExtension,
+                               DocType = DocType.Html,
+                               Enabled = true
+                             },
+                             new FileAssociation
+                             {
+                               Pattern = ".css",
+                               PatternType = PatternType.FileExtension,
+                               DocType = DocType.Css,
+                               Enabled = true
+                             },
+                             new FileAssociation
+                             {
+                               Pattern = @".*\.xslt?$",
+                               PatternType = PatternType.Regex,
+                               DocType = DocType.Xsl,
+                               Enabled = true
+                             }
+                           }
+      };
 
-    readonly IPatternHandler[] _handlers;
+    private readonly IPatternHandler[] myHandlers;
 
     public Settings()
     {
-      _handlers = new IPatternHandler[] { new FileExtensionPatternHandler(), new RegexPatternHandler() };
+      myHandlers = new IPatternHandler[] {new FileExtensionPatternHandler(), new RegexPatternHandler()};
     }
 
     public static Settings Instance
@@ -63,19 +63,13 @@ namespace JetBrains.ReSharper.PowerToys.ZenCoding.Options.Model
       get { return Shell.Instance.GetComponent<Settings>(); }
     }
 
-    public List<FileAssociation> FileAssociations
-    {
-      get;
-      set;
-    }
+    public List<FileAssociation> FileAssociations { get; set; }
 
-    void IComponent.Init()
-    {
-    }
+    #region IXmlExternalizableShellComponent Members
 
-    void IDisposable.Dispose()
-    {
-    }
+    void IComponent.Init() { }
+
+    void IDisposable.Dispose() { }
 
     string IXmlExternalizableComponent.TagName
     {
@@ -97,10 +91,10 @@ namespace JetBrains.ReSharper.PowerToys.ZenCoding.Options.Model
 
       try
       {
-        XmlSerializer serializer = new XmlSerializer(GetType());
-        using (var reader = XmlReader.Create(new StringReader(element.InnerXml)))
+        var serializer = new XmlSerializer(GetType());
+        using (XmlReader reader = XmlReader.Create(new StringReader(element.InnerXml)))
         {
-          Settings settings = (Settings) serializer.Deserialize(reader);
+          var settings = (Settings) serializer.Deserialize(reader);
           FileAssociations = settings.FileAssociations;
         }
       }
@@ -113,35 +107,37 @@ namespace JetBrains.ReSharper.PowerToys.ZenCoding.Options.Model
     void IXmlExternalizable.WriteToXml(XmlElement element)
     {
       element.SetAttribute("version", "1");
-      XmlSerializer serializer = new XmlSerializer(GetType());
+      var serializer = new XmlSerializer(GetType());
 
       using (var sw = new StringWriter())
       {
-        using (var writer = XmlWriter.Create(sw))
+        using (XmlWriter writer = XmlWriter.Create(sw))
         {
           serializer.Serialize(writer, this);
         }
 
-        XmlDocument document = new XmlDocument();
+        var document = new XmlDocument();
         document.LoadXml(sw.GetStringBuilder().ToString());
 
         element.InnerXml = document.DocumentElement.OuterXml;
       }
     }
 
+    #endregion
+
     public bool IsSupportedFile(string fileName)
     {
       return FileAssociations.Any(a => HandlerMatch(a, fileName));
     }
 
-    bool HandlerMatch(FileAssociation a, string fileName)
+    private bool HandlerMatch(FileAssociation a, string fileName)
     {
-      return _handlers.FirstOrDefault(x => x.Matches(a, fileName)) != null;
+      return myHandlers.FirstOrDefault(x => x.Matches(a, fileName)) != null;
     }
 
     public DocType GetDocType(string fileName)
     {
-      var fileAssociation = FileAssociations.FirstOrDefault(a => HandlerMatch(a, fileName));
+      FileAssociation fileAssociation = FileAssociations.FirstOrDefault(a => HandlerMatch(a, fileName));
       if (fileAssociation != null)
       {
         return fileAssociation.DocType;

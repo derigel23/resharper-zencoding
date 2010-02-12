@@ -9,10 +9,7 @@ namespace JetBrains.ReSharper.PowerToys.ZenCoding.Options
 {
   public class FileAssociationPresenter : TreeModelBrowserPresenter
   {
-    protected override void PresentObject(object value,
-                                          IPresentableItem item,
-                                          TreeModelNode modelNode,
-                                          PresentationState state)
+    protected override void PresentObject(object value, IPresentableItem item, TreeModelNode modelNode, PresentationState state)
     {
       var association = value as FileAssociation;
       if (association != null)

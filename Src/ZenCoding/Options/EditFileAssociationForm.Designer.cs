@@ -5,7 +5,7 @@ namespace JetBrains.ReSharper.PowerToys.ZenCoding.Options
 {
   partial class EditFileAssociationForm
   {
-    Panel _panel;
+    Panel myPanel;
 
     /// <summary>
     /// Required designer variable.
@@ -35,7 +35,7 @@ namespace JetBrains.ReSharper.PowerToys.ZenCoding.Options
     {
       System.Windows.Forms.Button _cancel;
       System.Windows.Forms.Button _ok;
-      this._panel = new System.Windows.Forms.Panel();
+      this.myPanel = new System.Windows.Forms.Panel();
       _cancel = new System.Windows.Forms.Button();
       _ok = new System.Windows.Forms.Button();
       this.SuspendLayout();
@@ -64,13 +64,13 @@ namespace JetBrains.ReSharper.PowerToys.ZenCoding.Options
       // 
       // _panel
       // 
-      this._panel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+      this.myPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                   | System.Windows.Forms.AnchorStyles.Left)
                   | System.Windows.Forms.AnchorStyles.Right)));
-      this._panel.Location = new System.Drawing.Point(12, 3);
-      this._panel.Name = "_panel";
-      this._panel.Size = new System.Drawing.Size(360, 218);
-      this._panel.TabIndex = 12;
+      this.myPanel.Location = new System.Drawing.Point(12, 3);
+      this.myPanel.Name = "_panel";
+      this.myPanel.Size = new System.Drawing.Size(360, 218);
+      this.myPanel.TabIndex = 12;
       // 
       // EditFileAssociationForm
       // 
@@ -79,7 +79,7 @@ namespace JetBrains.ReSharper.PowerToys.ZenCoding.Options
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.CancelButton = _cancel;
       this.ClientSize = new System.Drawing.Size(384, 262);
-      this.Controls.Add(this._panel);
+      this.Controls.Add(this.myPanel);
       this.Controls.Add(_ok);
       this.Controls.Add(_cancel);
       this.MaximizeBox = false;

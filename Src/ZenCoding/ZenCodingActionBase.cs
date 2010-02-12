@@ -15,7 +15,7 @@ namespace JetBrains.ReSharper.PowerToys.ZenCoding
 {
   public abstract class ZenCodingActionBase : IActionHandler
   {
-    static readonly IDictionary<ProjectFileType, DocType> ourFileTypes =
+    private static readonly IDictionary<ProjectFileType, DocType> ourFileTypes =
       new Dictionary<ProjectFileType, DocType>
       {
         { ProjectFileType.ASP, DocType.Html },
@@ -63,7 +63,8 @@ namespace JetBrains.ReSharper.PowerToys.ZenCoding
 
     protected static IProjectFile GetProjectFile(IDataContext context)
     {
-      return DocumentManager.GetInstance(context.GetData(IDE.DataConstants.SOLUTION))
+      return DocumentManager
+        .GetInstance(context.GetData(IDE.DataConstants.SOLUTION))
         .GetProjectFile(context.GetData(IDE.DataConstants.DOCUMENT));
     }
 

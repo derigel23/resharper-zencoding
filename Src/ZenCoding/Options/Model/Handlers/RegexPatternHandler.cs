@@ -5,7 +5,7 @@ namespace JetBrains.ReSharper.PowerToys.ZenCoding.Options.Model.Handlers
 {
   internal class RegexPatternHandler : IPatternHandler
   {
-    readonly IDictionary<string, Regex> _cache = new Dictionary<string, Regex>();
+    private readonly IDictionary<string, Regex> myCache = new Dictionary<string, Regex>();
 
     public bool Matches(FileAssociation fileAssociation, string fileName)
     {
@@ -26,16 +26,13 @@ namespace JetBrains.ReSharper.PowerToys.ZenCoding.Options.Model.Handlers
 
     Regex GetRegex(FileAssociation fileAssociation)
     {
-      if (_cache.ContainsKey(fileAssociation.Pattern))
+      if (myCache.ContainsKey(fileAssociation.Pattern))
       {
-        return _cache[fileAssociation.Pattern];
+        return myCache[fileAssociation.Pattern];
       }
 
       return new Regex(fileAssociation.Pattern,
-                       RegexOptions.Compiled |
-                       RegexOptions.CultureInvariant |
-                       RegexOptions.IgnoreCase |
-                       RegexOptions.Singleline);
+        RegexOptions.Compiled | RegexOptions.CultureInvariant | RegexOptions.IgnoreCase | RegexOptions.Singleline);
     }
   }
 }

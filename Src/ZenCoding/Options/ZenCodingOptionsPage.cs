@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Reflection;
 using System.Windows.Forms;
 
 using JetBrains.ReSharper.Features.Common.Options;
@@ -8,6 +7,7 @@ using JetBrains.ReSharper.PowerToys.ZenCoding.Options.Model;
 using JetBrains.TreeModels;
 using JetBrains.UI;
 using JetBrains.UI.Options;
+using JetBrains.Util;
 
 namespace JetBrains.ReSharper.PowerToys.ZenCoding.Options
 {
@@ -18,41 +18,30 @@ namespace JetBrains.ReSharper.PowerToys.ZenCoding.Options
   public partial class ZenCodingOptionsPage : UserControl, IOptionsPage
   {
     const string ID = "ZenCoding-E439BB70-6F99-4C64-BA42-5D3DAEAC70E1";
-    readonly FileAssociationsTreeView _view;
+    readonly FileAssociationsTreeView myView;
 
     public ZenCodingOptionsPage()
     {
       InitializeComponent();
 
       var model = BuildModel(Settings.Instance.FileAssociations);
-      _view = new FileAssociationsTreeView(model,
-                                           new FileAssociationViewController())
-              {
-                Presenter = new FileAssociationPresenter(),
-                Dock = DockStyle.Fill
-              };
-      _view.DoubleClick += EditFileAssociation;
-      _rules.Controls.Add(_view);
+      myView = new FileAssociationsTreeView(model, new FileAssociationViewController())
+      {
+        Presenter = new FileAssociationPresenter(),
+        Dock = DockStyle.Fill
+      };
+      myView.DoubleClick += EditFileAssociation;
+      myRules.Controls.Add(myView);
 
-      _buttons.Items.Add("Create",
-                         ImageLoader.GetImage("Create", new Assembly[0]),
-                         CreateFileAssociation);
+      _buttons.Items.Add("Create", ImageLoader.GetImage("Create"), CreateFileAssociation);
 
-      _buttons.Items.Add("Edit",
-                         ImageLoader.GetImage("Edit", new Assembly[0]),
-                         EditFileAssociation);
+      _buttons.Items.Add("Edit", ImageLoader.GetImage("Edit"), EditFileAssociation);
 
-      _buttons.Items.Add("Remove",
-                         ImageLoader.GetImage("Remove", new Assembly[0]),
-                         RemoveFileAssociation);
+      _buttons.Items.Add("Remove", ImageLoader.GetImage("Remove"), RemoveFileAssociation);
 
-      _buttons.Items.Add("Up",
-                         ImageLoader.GetImage("Up", new Assembly[0]),
-                         MoveUp);
+      _buttons.Items.Add("Up", ImageLoader.GetImage("Up"), MoveUp);
 
-      _buttons.Items.Add("Down",
-                         ImageLoader.GetImage("Down", new Assembly[0]),
-                         MoveDown);
+      _buttons.Items.Add("Down", ImageLoader.GetImage("Down"), MoveDown);
     }
 
     public Control Control
@@ -77,12 +66,11 @@ namespace JetBrains.ReSharper.PowerToys.ZenCoding.Options
 
     void CreateFileAssociation(object sender, EventArgs e)
     {
-      OpenEditor(new FileAssociation(),
-                 form =>
-                   {
-                     Settings.Instance.FileAssociations.Add(form.FileAssociation);
-                     BindModel(null);
-                   });
+      OpenEditor(new FileAssociation(), form =>
+      {
+        Settings.Instance.FileAssociations.Add(form.FileAssociation);
+        BindModel(null);
+      });
     }
 
     void EditFileAssociation(object sender, EventArgs e)
@@ -106,7 +94,7 @@ namespace JetBrains.ReSharper.PowerToys.ZenCoding.Options
         }
 
         onClose(form);
-        _view.UpdateAllNodesPresentation();
+        myView.UpdateAllNodesPresentation();
       }
     }
 
@@ -172,7 +160,7 @@ namespace JetBrains.ReSharper.PowerToys.ZenCoding.Options
 
     FileAssociation GetSelectedFileAssociation()
     {
-      TreeModelNode selection = _view.ModelFocusedNode;
+      TreeModelNode selection = myView.ModelFocusedNode;
       if (selection == null)
       {
         return null;
@@ -186,7 +174,7 @@ namespace JetBrains.ReSharper.PowerToys.ZenCoding.Options
       return association;
     }
 
-    void _reset_Click(object sender, EventArgs e)
+    void ResetClick(object sender, EventArgs e)
     {
       Settings.Instance.FileAssociations = new List<FileAssociation>();
 
@@ -202,7 +190,7 @@ namespace JetBrains.ReSharper.PowerToys.ZenCoding.Options
     {
       var model = new TreeSimpleModel();
 
-      foreach (var association in fileAssociations ?? new FileAssociation[0])
+      foreach (var association in fileAssociations ?? EmptyArray<FileAssociation>.Instance)
       {
         model.Insert(null, association);
       }
@@ -212,15 +200,15 @@ namespace JetBrains.ReSharper.PowerToys.ZenCoding.Options
 
     void BindModel(FileAssociation selection)
     {
-      _view.Model = BuildModel(Settings.Instance.FileAssociations);
-      _view.UpdateAllNodesPresentation();
+      myView.Model = BuildModel(Settings.Instance.FileAssociations);
+      myView.UpdateAllNodesPresentation();
 
       for (int i = 0; i < Settings.Instance.FileAssociations.Count; i++)
       {
         var association = Settings.Instance.FileAssociations[i];
         if (ReferenceEquals(selection, association))
         {
-          _view.SetFocusedNode(_view.FindNodeByID(i));
+          myView.SetFocusedNode(myView.FindNodeByID(i));
           break;
         }
       }

@@ -17,8 +17,7 @@ namespace JetBrains.ReSharper.PowerToys.ZenCoding.Options.Model.Handlers
         return false;
       }
 
-      return Path.GetExtension(fileName)
-        .Equals(fileAssociation.Pattern, StringComparison.OrdinalIgnoreCase);
+      return Path.GetExtension(fileName).Equals(fileAssociation.Pattern, StringComparison.OrdinalIgnoreCase);
     }
   }
 }
