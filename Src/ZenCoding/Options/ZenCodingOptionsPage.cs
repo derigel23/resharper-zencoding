@@ -14,7 +14,7 @@ namespace JetBrains.ReSharper.PowerToys.ZenCoding.Options
   [OptionsPage(ID,
     "Zen Coding",
     "JetBrains.ReSharper.PowerToys.ZenCoding.Options.zencoding.png",
-    ParentId = CommonLanguagePage.PID)]
+    ParentId = ToolsPage.PID)]
   public partial class ZenCodingOptionsPage : UserControl, IOptionsPage
   {
     const string ID = "ZenCoding-E439BB70-6F99-4C64-BA42-5D3DAEAC70E1";
